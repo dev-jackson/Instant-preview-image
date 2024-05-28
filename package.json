@@ -8,6 +8,10 @@
     "email": "angeljackson0933@gmail.com",
     "url": "https://jackson-homepage.vercel.app/"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dev-jackson/Instant-preview-image.git"
+  },
   "engines": {
     "vscode": "^1.89.0"
   },
