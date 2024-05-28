@@ -1,0 +1,92 @@
+{
+  "name": "instant-preview-image",
+  "displayName": "Instant preview image",
+  "description": "Preview images on hover in multiple languages",
+  "version": "0.0.1",
+  "author": {
+    "name": "Jackson Sanchez",
+    "email": "angeljackson0933@gmail.com",
+    "url": "https://jackson-homepage.vercel.app/"
+  },
+  "engines": {
+    "vscode": "^1.89.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onHover"
+  ],
+  "main": "./dist/extension.js",
+  "icon": "icon.png",
+  "contributes": {
+    "languages": [
+      {
+        "id": "javascript",
+        "extensions": [
+          ".js",
+          ".jsx"
+        ],
+        "aliases": [
+          "Javascript",
+          "javascript"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "configurationDefaults": {
+      "[javascript]": {
+        "instantPreviewImage.fileExtensions": [
+          ".png",
+          ".jpg",
+          ".jpeg",
+          ".git",
+          ".svg"
+        ]
+      },
+      "[typescript]": {
+        "instantPreviewImage.fileExtensions": [
+          ".png",
+          ".jpg",
+          ".jpeg",
+          ".git",
+          ".svg"
+        ]
+      }
+    },
+    "commands": [
+      {
+        "command": "instant-preview-image.showImagePreview",
+        "title": "Show image preview"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "~18.19.33",
+    "@types/vscode": "^1.89.0",
+    "@typescript-eslint/eslint-plugin": "^7.11.0",
+    "@typescript-eslint/parser": "^7.11.0",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.3.10",
+    "eslint": "^8.57.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.5",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "image-size": "^1.1.1"
+  }
+}
