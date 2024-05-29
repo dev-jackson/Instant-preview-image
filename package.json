@@ -4,7 +4,7 @@
   "description": "Preview images on hover in multiple languages",
   "publisher": "dev-jack-son-san-chez",
   "publishConfig": {},
-  "version": "0.0.2",
+  "version": "0.0.4",
   "author": {
     "name": "Jackson Sanchez",
     "email": "angeljackson0933@gmail.com",
@@ -23,7 +23,10 @@
     "Debuggers"
   ],
   "activationEvents": [
-    "onHover"
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact"
   ],
   "main": "./dist/extension.js",
   "icon": "icon.png",
@@ -38,8 +41,7 @@
         "aliases": [
           "Javascript",
           "javascript"
-        ],
-        "configuration": "./language-configuration.json"
+        ]
       },
       {
         "id": "javascriptreact",
@@ -49,8 +51,7 @@
         "aliases": [
           "JavaScript React",
           "javascriptreact"
-        ],
-        "configuration": "./language-configuration.json"
+        ]
       },
       {
         "id": "typescriptreact",
@@ -60,8 +61,7 @@
         "aliases": [
           "TypeScript React",
           "typescriptreact"
-        ],
-        "configuration": "./language-configuration.json"
+        ]
       }
     ],
     "configurationDefaults": {
