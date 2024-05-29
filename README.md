@@ -2,6 +2,10 @@
 
 A Visual Studio Code extension to preview images on hover.
 
+# Demo
+
+![Demo](https://raw.githubusercontent.com/dev-jackson/Instant-preview-image/main/assets/preview.gif)
+
 ## Features
 
 - Preview images on hover

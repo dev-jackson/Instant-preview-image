@@ -5,7 +5,8 @@ import sizeOf from 'image-size';
 
 
 export function activate(context: vscode.ExtensionContext) {
-	const supportedLanguages = ["javascript", 'typescript'];
+	const supportedLanguages = ['javascript', 'typescript', 'javascriptreact', 'typescriptreact'];
+
 
 	const provider = vscode.languages.registerHoverProvider(supportedLanguages, {
 		async provideHover(document, position, token) {
@@ -23,9 +24,9 @@ export function activate(context: vscode.ExtensionContext) {
 			const matchedText = match[2]; // El segundo grupo de captura contiene la ruta del archivo
 			const matchedRange = new vscode.Range(
 				line.lineNumber,
-				match.index,
+				match.index + match[1].length,
 				line.lineNumber,
-				match.index + match[0].length
+				match.index + match[1].length + matchedText.length
 			);
 
 			if (!matchedText) {
@@ -34,13 +35,28 @@ export function activate(context: vscode.ExtensionContext) {
 			const fileExtensions = vscode.workspace.getConfiguration().get<string[]>('instantPreviewImage.fileExtensions') || ['.png', '.jpg', '.jpeg', '.gif', '.svg'];
 
 			if (fileExtensions.some(ext => matchedText.endsWith(ext))) {
-				const filePath = path.resolve(path.dirname(document.uri.fsPath), matchedText);
+				let filePath: string | undefined;
+				const workspaceFolder = vscode.workspace.getWorkspaceFolder(document.uri);
+
+				if (workspaceFolder) {
+					const projectPath = path.join(workspaceFolder.uri.fsPath, matchedText);
+					const srcPath = path.join(workspaceFolder.uri.fsPath, 'src', matchedText);
+
+					if (fs.existsSync(projectPath)) {
+						filePath = projectPath;
+					} else if (fs.existsSync(srcPath)) {
+						filePath = srcPath;
+					}
+				}
+
+				if (!filePath) {
+					filePath = path.resolve(path.dirname(document.uri.fsPath), matchedText);
+				}
 				const imagePath = vscode.Uri.file(filePath);
 
 				if (!fs.existsSync(filePath)) {
 					return undefined;
 				}
-
 				try {
 					const dimensions = sizeOf(filePath);
 

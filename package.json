@@ -2,7 +2,9 @@
   "name": "instant-preview-image",
   "displayName": "Instant preview image",
   "description": "Preview images on hover in multiple languages",
-  "version": "0.0.1",
+  "publisher": "dev-jack-son-san-chez",
+  "publishConfig": {},
+  "version": "0.0.2",
   "author": {
     "name": "Jackson Sanchez",
     "email": "angeljackson0933@gmail.com",
@@ -16,7 +18,9 @@
     "vscode": "^1.89.0"
   },
   "categories": [
-    "Other"
+    "Programming Languages",
+    "Snippets",
+    "Debuggers"
   ],
   "activationEvents": [
     "onHover"
@@ -34,6 +38,28 @@
         "aliases": [
           "Javascript",
           "javascript"
+        ],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "javascriptreact",
+        "extensions": [
+          ".jsx"
+        ],
+        "aliases": [
+          "JavaScript React",
+          "javascriptreact"
+        ],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "typescriptreact",
+        "extensions": [
+          ".tsx"
+        ],
+        "aliases": [
+          "TypeScript React",
+          "typescriptreact"
         ],
         "configuration": "./language-configuration.json"
       }
@@ -54,6 +80,24 @@
           ".jpg",
           ".jpeg",
           ".git",
+          ".svg"
+        ]
+      },
+      "[javascriptreact]": {
+        "instantPreviewImage.fileExtensions": [
+          ".png",
+          ".jpg",
+          ".jpeg",
+          ".gif",
+          ".svg"
+        ]
+      },
+      "[typescriptreact]": {
+        "instantPreviewImage.fileExtensions": [
+          ".png",
+          ".jpg",
+          ".jpeg",
+          ".gif",
           ".svg"
         ]
       }
