@@ -9,7 +9,7 @@ A Visual Studio Code extension to preview images on hover.
 ## Features
 
 - Preview images on hover
-- Display file name, type, and dimensions of the image
+- Display file name, type, size and dimensions of the image
 
 <!-- ## Donations
 

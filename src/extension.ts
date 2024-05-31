@@ -88,11 +88,17 @@ export function activate(context: vscode.ExtensionContext) {
 
 					try {
 						const dimensions = sizeOf(filePath);
+						const fileSizeInBytes = fs.statSync(filePath).size;
+						const fileSizeInKB = (fileSizeInBytes / 1024).toFixed(2);
+						const fileSizeInMB = (fileSizeInBytes / (1024 * 1024)).toFixed(2);
+						const fileSize = fileSizeInBytes > 1024 * 1024 ? `${fileSizeInMB} MB` : `${fileSizeInKB} KB`;
 
-						const markdownString = new vscode.MarkdownString(); markdownString.appendMarkdown(`![Image Preview](${imagePath.toString()})\n\n`);
+						const markdownString = new vscode.MarkdownString();
+						markdownString.appendMarkdown(`![Image Preview](${imagePath.toString()})\n\n`);
 						markdownString.appendMarkdown(`**File Name:** ${path.basename(filePath)}\n\n`);
 						markdownString.appendMarkdown(`**Type:** ${dimensions.type?.toUpperCase()}\n\n`);
-						markdownString.appendMarkdown(`**Dimensions:** ${dimensions.width} x ${dimensions.height} px`);
+						markdownString.appendMarkdown(`**Dimensions:** ${dimensions.width} x ${dimensions.height} px\n\n`);
+						markdownString.appendMarkdown(`**Size:** ${fileSize}`);
 						markdownString.isTrusted = true;
 
 						return new vscode.Hover(markdownString, matchedRange);
